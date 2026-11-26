@@ -2,7 +2,7 @@
 <p align="center"><a href="README.md">简体中文</a> · <strong>English</strong></p>
 
 <h1 align="center">🦖 Interactive Math Explainer</h1>
-<p align="center"><code>dino-math-explainer</code> · v1.0.1</p>
+<p align="center"><code>dino-math-explainer</code> · v1.0.2</p>
 <p align="center"><strong>Start with one math problem. Bring an interactive lesson to class.</strong></p>
 
 ## Why use this skill?
