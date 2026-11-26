@@ -14,7 +14,7 @@
 
 ## 创作与演示
 
-使用隐藏编辑实例构造、回读与导出，使用可见演示实例展示；完整初始化和错误处理示例以[能力入口 README](README.md)为准。两者不要求对应到固定的外层 slide 数据模型。
+使用隐藏编辑实例构造、回读与导出，使用可见演示实例展示；完整初始化和错误处理示例以[几何演示能力说明](algeo-sdk.md)为准。两者不要求对应到固定的外层 slide 数据模型。
 
 ```js
 const editor = await AlgeoSdk.createEditor(editorContainer, {});
@@ -46,6 +46,6 @@ await presentation.loadFile(snapshot);
 
 ## 演示编排
 
-画板内分步显示、绘制和高亮可参考 [Reveal](presentation.md)。外层文字、公式和其他学生所见的素材由 agent 自主编排，并明确一次输入推进什么，避免同时推进两层演示。只有需要重置时才重载工程；仅揭示屏幕文字或调整布局时应保留当前交互状态。
+画板内分步显示、绘制和高亮可参考 [Reveal](algeo-presentation.md)。外层文字、公式和其他学生所见的素材由 agent 自主编排，并明确一次输入推进什么，避免同时推进两层演示。只有需要重置时才重载工程；仅揭示屏幕文字或调整布局时应保留当前交互状态。
 
 官方文档按需查看：[编辑模式](https://open.dajiaoai.com/sdk/2/editor)、[演示模式](https://open.dajiaoai.com/sdk/2/presentation)、[REPL](https://open.dajiaoai.com/sdk/repl)。`file://` 免鉴权以本项目的本地使用要求为准。

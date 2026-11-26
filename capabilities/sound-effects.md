@@ -4,23 +4,23 @@
 
 ## 现有音频与触发时机
 
-下表的文件都在 [`assets/`](assets/)。同一语义有多个候选时，制作阶段为整份课件随机抽一段。
+下表的文件都在 [音效素材目录](../assets/sound-effects/)。同一语义有多个候选时，制作阶段为整份课件随机抽一段。
 
 | 语义 ID | 触发时机 | 候选文件 |
 | --- | --- | --- |
-| `correct` | 一次有效提交被判定为正确 | [`答对·近处轻响.mp3`](assets/答对·近处轻响.mp3) |
-| `incorrect` | 一次有效提交被判定为错误，与订正提示同步 | [`incorrect--dialog-error.wav`](assets/incorrect--dialog-error.wav)、[`incorrect--dialog-error-serious.wav`](assets/incorrect--dialog-error-serious.wav)、[`incorrect--dialog-error-critical.wav`](assets/incorrect--dialog-error-critical.wav) |
-| `highlight` | 首次揭示关键条件、公式或推理依据时，与视觉高亮同步 | [`重点提示.mp3`](assets/重点提示.mp3) |
-| `tick` | 倒数进入最后 3、2、1 秒时各播放一次 | [`倒计时-木鱼一声.wav`](assets/倒计时-木鱼一声.wav) |
-| `time-up` | 一轮计时归零并显示到时状态时播放一次 | [`doorbell.wav`](assets/doorbell.wav) |
-| `click` | 需要强化按钮操作反馈时 | [`按钮点击.mp3`](assets/按钮点击.mp3) |
-| `confirm` | 设置或操作确认成功时，例如应用计时设置 | [`点击 确认.mp3`](assets/点击%20确认.mp3) |
+| `correct` | 一次有效提交被判定为正确 | [`答对·近处轻响.mp3`](../assets/sound-effects/答对·近处轻响.mp3) |
+| `incorrect` | 一次有效提交被判定为错误，与订正提示同步 | [`incorrect--dialog-error.wav`](../assets/sound-effects/incorrect--dialog-error.wav)、[`incorrect--dialog-error-serious.wav`](../assets/sound-effects/incorrect--dialog-error-serious.wav)、[`incorrect--dialog-error-critical.wav`](../assets/sound-effects/incorrect--dialog-error-critical.wav) |
+| `highlight` | 首次揭示关键条件、公式或推理依据时，与视觉高亮同步 | [`重点提示.mp3`](../assets/sound-effects/重点提示.mp3) |
+| `tick` | 倒数进入最后 3、2、1 秒时各播放一次 | [`倒计时-木鱼一声.wav`](../assets/sound-effects/倒计时-木鱼一声.wav) |
+| `time-up` | 一轮计时归零并显示到时状态时播放一次 | [`doorbell.wav`](../assets/sound-effects/doorbell.wav) |
+| `click` | 需要强化按钮操作反馈时 | [`按钮点击.mp3`](../assets/sound-effects/按钮点击.mp3) |
+| `confirm` | 设置或操作确认成功时，例如应用计时设置 | [`点击 确认.mp3`](../assets/sound-effects/点击%20确认.mp3) |
 
 空提交、格式错误和未作答超时使用各自的可见反馈。一次操作触发多种反馈时，优先播放判题、揭示或计时结果对应的音效。普通翻页和恢复画面状态保持安静。
 
 ## 生成单文件 HTML
 
-在 skill 根目录运行 [选音脚本](../../scripts/select-sound-effects.cjs)，参数为课件实际用到的语义 ID。带答题反馈、重点揭示和完整倒数提示的课件可以这样调用：
+在 skill 根目录运行 [选音脚本](../scripts/select-sound-effects.cjs)，参数为课件实际用到的语义 ID。带答题反馈、重点揭示和完整倒数提示的课件可以这样调用：
 
 ```sh
 node scripts/select-sound-effects.cjs correct incorrect highlight tick time-up
@@ -28,7 +28,7 @@ node scripts/select-sound-effects.cjs correct incorrect highlight tick time-up
 
 脚本输出按语义 ID 索引的 Data URL JSON。把输出写入 HTML 脚本的 `cueUrls`，让同一份课件的全部页面共用这份映射。继续完善预览或局部修改时，沿用已选的音效，仅为新增语义再运行脚本。缺素材时脚本会提示并省略对应键，课件照常显示反馈。交付前用 `file://` 打开 HTML，确认音频直接从内嵌数据播放。
 
-新增候选时，把 WAV、MP3 或 OGG 直接放在 `assets/` 下，命名为 `<语义 ID>--<自定名称>.<扩展名>`，例如 `time-up--铃声.wav`。可用 `--assets-dir <目录>` 选择其他素材库，脚本也支持已有的语义子目录。分发课件时按素材许可处理。
+新增候选时，把 WAV、MP3 或 OGG 直接放在[音效素材目录](../assets/sound-effects/)中，命名为 `<语义 ID>--<自定名称>.<扩展名>`，例如 `time-up--铃声.wav`。可用 `--assets-dir <目录>` 选择其他素材库，脚本也支持已有的语义子目录。分发课件时按素材许可处理。
 
 ## 绑定课件事件
 

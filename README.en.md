@@ -2,7 +2,7 @@
 <p align="center"><a href="README.md">简体中文</a> · <strong>English</strong></p>
 
 <h1 align="center">🦖 Interactive Math Explainer</h1>
-<p align="center"><code>dino-math-explainer</code> · v1.0.2</p>
+<p align="center"><code>dino-math-explainer</code> · v1.0.4</p>
 <p align="center"><strong>Start with one math problem. Bring an interactive lesson to class.</strong></p>
 
 ## Why use this skill?
@@ -24,7 +24,7 @@ Send this GitHub repository link to Codex, Claude, or another product that suppo
 
 1. **Get the complete skill.** The repository root is the skill directory. Use the requested Git tag or commit if the user specified one. Otherwise, use the version the link points to. Clone the repository or download the source ZIP. If the environment cannot reach GitHub, ask the user to upload the source ZIP.
 2. **Install for the product and scope.** Name the directory `dino-math-explainer` and preserve all relative paths, including `SKILL.md`, the READMEs, scripts, references, and bundled audio. Exclude `.git/` when copying or packaging. If a skill with the same name exists, check its version and source, then confirm how to handle any local changes.
-3. **Verify that the skill loads.** Check `name` and `metadata.version` in `SKILL.md` and confirm the supporting files are present. If the skill is missing from the product's skill list or invocation menu, reopen the target session and check again. Report the version, install location or account scope, and whether the product recognizes the skill. If permissions block an action, say which step the user needs to complete. Products with read-only file access can use the complete bundle in the current session by following `SKILL.md`.
+3. **Verify that the skill loads.** Check the `name` and version in `SKILL.md` and confirm the supporting files are present. If the skill is missing from the product's skill list or invocation menu, reopen the target session and check again. Report the version, install location or account scope, and whether the product recognizes the skill. If permissions block an action, say which step the user needs to complete. Products with read-only file access can use the complete bundle in the current session by following `SKILL.md`.
 
 | Product | Project / workspace | User install or import |
 | --- | --- | --- |
@@ -48,6 +48,12 @@ Send this GitHub repository link to Codex, Claude, or another product that suppo
 | Other Agent Skills products | Use the project path in the product docs | Use the product’s local install or import option |
 
 Project paths are relative to **the target project or agent workspace**. If the product asks you to upload a package, use its file picker and keep all supporting files with `SKILL.md`. If the agent cannot access the upload screen, it should provide the prepared package and tell the user where to upload it.
+
+### Publishing on the WorkBuddy Open Platform
+
+WorkBuddy reads the version, display names, descriptions, and examples from the top-level fields in `SKILL.md`. [WorkBuddy skill publishing documentation](https://open.workbuddy.cn/docs/skill#技能基础结构)
+
+Register new capabilities in the source [capability registry](capabilities/README.md). Organize capability documentation under `capabilities/` and capability assets in subdirectories of `assets/`.
 
 <details>
 <summary><strong>ZIP layout for Claude and TraeWork</strong></summary>

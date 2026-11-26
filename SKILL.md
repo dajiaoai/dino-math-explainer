@@ -1,8 +1,23 @@
 ---
 name: dino-math-explainer
+display_name: "数学动态讲解"
+display_name_en: "Interactive Math"
 description: 数学动态讲解——创建或修改教师主导、分步讲解的 K-12 数学交互课件，交付支持本地打开的在线 HTML。适用于数学动态讲解、数学微课及课件中的几何动画。
+description_zh: "创建与修改教师主导的分步交互数学课件，交付支持本地打开的在线 HTML"
+description_en: "Create or revise teacher-led, step-by-step K-12 math lessons for online use, with an HTML file that also opens locally."
+examples_zh:
+- "讲解一元一次方程"
+- "怎么理解线段、直线、射线"
+- "反比例函数课堂练习"
+examples_en:
+- "Explain linear equations in one variable"
+- "How can I understand line segments, lines, and rays?"
+- "Classroom practice on inverse variation"
+version: "1.0.4"
+author: "杭州逸登科技有限公司"
 metadata:
-  version: "1.0.2"
+  version: "1.0.4"
+  author: "杭州逸登科技有限公司"
   privacyPolicyUrl: "https://meidengtech.feishu.cn/wiki/W4U2wAdtNiwJC0kANzQcVe6ZnWf?from=from_copylink"
   display_name: "数学动态讲解"
   display_description: "创建与修改教师主导的分步交互数学课件，交付支持本地打开的在线 HTML"
@@ -49,7 +64,7 @@ flowchart TD
 - **教师提示只写在回复正文里。** 按页或步骤简述提问、停顿和揭晓时机。预览和成品仅保留学生所需内容与演示控件，教师提示也不得写入隐藏备注或内嵌数据。
 - **课堂演示内容随课件画布整体等比缩放。** 预览和最终 HTML 都要让文字、公式、图形、标注及页内交互控件共享同一缩放比例。播放器导航、全屏和静音等外部控件可独立布局。
 - **几何主图默认用 `algeo-sdk`。** 题干引用或推理依赖的几何图都适用，包括图形固定、只做标注或分步高亮的题。优先使用原生几何对象和分步揭示，统一线型与标注，让图形和推导同步。
-- **新课件默认自带音效，且声音开关默认开启。** 用户明确要求无音效时才省略。规划页面时主动读取[音效说明](capabilities/sound-effects/README.md)，为实际教学事件选音，将素材内嵌到 HTML 并接入触发逻辑。纯讲解课件也至少为一次关键条件、公式或推理步骤的揭示配音效。
-- 新能力通过 `capabilities/README.md` 注册，并提供独立用途、入口、输入输出与边界说明。不要把工具调用细节加入第一轮用户确认流程。
+- **新课件默认自带音效，且声音开关默认开启。** 用户明确要求无音效时才省略。规划页面时读取[音效说明](capabilities/sound-effects.md)，在技能根目录运行 `node scripts/select-sound-effects.cjs <语义 ID> [...]`，为实际教学事件选音，将素材内嵌到 HTML 并接入触发逻辑。纯讲解课件也至少为一次关键条件、公式或推理步骤的揭示配音效。
+- 在能力注册表中登记新能力，并提供独立用途、入口、输入输出与边界说明。不要把工具调用细节加入第一轮用户确认流程。
 - **默认联网交付。** 同一份 HTML 在联网状态下可通过 `file://` 双击打开，无需启动 HTTP 服务。仅在用户明确要求断网运行时，将离线兼容性纳入选型；若影响几何主图的呈现，先说明取舍。
 - 数学正确性与实际呈现分别核对，不把工具调用成功或代码生成完成等同于讲解验证通过。

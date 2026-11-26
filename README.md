@@ -2,7 +2,7 @@
 <p align="center"><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
 
 <h1 align="center">🦖 数学动态讲解</h1>
-<p align="center"><code>dino-math-explainer</code> · v1.0.2</p>
+<p align="center"><code>dino-math-explainer</code> · v1.0.4</p>
 <p align="center"><strong>给一道题，就能开始备一堂动态数学课。</strong></p>
 
 ## 为什么使用这个 Skill
@@ -28,7 +28,7 @@
 
 1. **获取完整技能包。** 仓库根目录就是技能目录。用户指定 Git 标签或提交时使用该版本，否则使用链接指向的版本。克隆仓库或下载源码 ZIP。若环境无法访问 GitHub，请用户上传源码 ZIP。
 2. **按产品和范围安装。** 将整个技能目录命名为 `dino-math-explainer`，保留所有文件的相对位置，包括 `SKILL.md`、README、脚本、参考资料和内置音频。复制或打包时排除 `.git/`。已有同名技能时，先核对版本和来源，再确认如何处理本地修改。
-3. **确认技能已加载。** 检查 `SKILL.md` 中的 `name`、`metadata.version` 及随附资源。若技能未出现在技能列表或调用菜单，重开目标会话再检查。回报版本、安装位置或账号范围，以及产品是否已识别技能。权限受限时，说明还需要哪项用户操作。仅能读取文件的产品可在当前会话使用完整技能包并遵循 `SKILL.md`。
+3. **确认技能已加载。** 检查 `SKILL.md` 中的 `name`、`version`及随附资源。若技能未出现在技能列表或调用菜单，重开目标会话再检查。回报版本、安装位置或账号范围，以及产品是否已识别技能。权限受限时，说明还需要哪项用户操作。仅能读取文件的产品可在当前会话使用完整技能包并遵循 `SKILL.md`。
 
 | 产品 | 项目或工作区 | 用户安装或导入 |
 | --- | --- | --- |

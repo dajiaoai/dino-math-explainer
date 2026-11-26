@@ -2,7 +2,7 @@
 
 ## 适用场景与调用方式
 
-用于几何主图、精确构造、函数图像和参数探索。固定主图也用原生对象构造，在同一画板内通过 [Reveal](presentation.md) 分步绘制、高亮和揭示标注。页面由 agent 自主设计，几何能力统一通过 `algeo-sdk` 接入。
+用于几何主图、精确构造、函数图像和参数探索。固定主图也用原生对象构造，在同一画板内通过 [Reveal](algeo-presentation.md) 分步绘制、高亮和揭示标注。页面由 agent 自主设计，几何能力统一通过 `algeo-sdk` 接入。
 
 使用一对实例完成创作和展示：
 
@@ -12,7 +12,7 @@
 
 **本地 HTML 必须通过 `file://` 直接打开。此场景创建编辑和演示实例都无需传入鉴权参数，不传 `auth` 或 appId，也不要求启动本地 HTTP 服务。** 远程 SDK 资源仍需联网。
 
-演示端保留大角 SDK 原生错误提示和解决引导。下文 `runRepl` 的 `catch` 只用于创作端回读命令错误。演示端按[嵌入异常与验证](sdk-integration.md#嵌入异常与验证)处理。
+演示端保留大角 SDK 原生错误提示和解决引导。下文 `runRepl` 的 `catch` 只用于创作端回读命令错误。演示端按[嵌入异常与验证](algeo-sdk-integration.md#嵌入异常与验证)处理。
 
 ## 基本接入：隐藏编辑端，可见演示端
 
@@ -120,9 +120,9 @@ REPL 失败可能留下部分修改；命令执行成功也不代表类型或数
  help Segment
 ```
 
-`--` 是注释，`#ID` 用于样式选择。`show`、`hide`、`set`、`play`、`stop` 是动作块中的动作，不是独立 REPL 命令；画板内显示、绘制和高亮可使用原生 [Reveal](presentation.md)。
+`--` 是注释，`#ID` 用于样式选择。`show`、`hide`、`set`、`play`、`stop` 是动作块中的动作，不是独立 REPL 命令；画板内显示、绘制和高亮可使用原生 [Reveal](algeo-presentation.md)。
 
 ## 完整语法与高阶用法
 
 - [官方完整 REPL 语法文档](https://open.dajiaoai.com/sdk/repl)：查询画板管理、定义、样式、几何构造、动画与交互、输出格式及错误行为。本文只保留基本用法，制作时按需查阅完整文档，并用 `help <Topic>` 核对具体语法。
-- [presentation：JSX 与 Reveal 补充用法](presentation.md)：画板内文字与公式、初始隐藏、分步绘制与高亮、同一步动作组合，以及空白点击推进控制。涉及演示编排时读取，作为官方 REPL 文档之外的专项参考。
+- [presentation：JSX 与 Reveal 补充用法](algeo-presentation.md)：画板内文字与公式、初始隐藏、分步绘制与高亮、同一步动作组合，以及空白点击推进控制。涉及演示编排时读取，作为官方 REPL 文档之外的专项参考。

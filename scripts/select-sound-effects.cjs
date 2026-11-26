@@ -1,5 +1,5 @@
 const { randomInt } = require('node:crypto');
-const { readFileSync, readdirSync } = require('node:fs');
+const { existsSync, readFileSync, readdirSync } = require('node:fs');
 const { extname, join } = require('node:path');
 
 const cueIds = new Set(['correct', 'incorrect', 'highlight', 'tick', 'time-up', 'click', 'confirm']);
@@ -29,7 +29,10 @@ function listAudio(directory) {
 }
 
 function selectCues(args) {
-  let assetsDir = join(__dirname, '..', 'capabilities', 'sound-effects', 'assets');
+  const sharedAssets = join(__dirname, '..', 'assets');
+  const soundAssets = join(sharedAssets, 'sound-effects');
+  // The WorkBuddy ZIP puts the bundled audio directly in assets/.
+  let assetsDir = existsSync(soundAssets) ? soundAssets : sharedAssets;
   if (args[0] === '--assets-dir') {
     assetsDir = args[1];
     args = args.slice(2);

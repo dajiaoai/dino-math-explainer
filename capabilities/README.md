@@ -4,9 +4,9 @@ agent 在第一轮规划前读取本表，结合当前环境提供的工具确�
 
 | ID | 能力 | 适用场景 | 工具来源 | 说明 |
 | --- | --- | --- | --- | --- |
-| `algeo-sdk` | 几何演示 | 题干或推理中的几何主图（含固定图形、标注和分步高亮）、精确构造、函数图像、对象联动 | 大角几何 SDK | [接入与文档](algeo-sdk/README.md) |
-| `image-generation` | 图片生成 | 情境插画、角色、背景、视觉素材 | 当前 agent 自带生图服务 | [使用与边界](image-generation/README.md) |
-| `sound-effects` | 课件音效 | 判题反馈、按钮操作、重点揭示、限时活动、关键操作 | 本地音频与生成脚本 | [音频文件与调用方式](sound-effects/README.md) |
+| `algeo-sdk` | 几何演示 | 题干或推理中的几何主图（含固定图形、标注和分步高亮）、精确构造、函数图像、对象联动 | 大角几何 SDK | [接入与文档](algeo-sdk.md) |
+| `image-generation` | 图片生成 | 情境插画、角色、背景、视觉素材 | 当前 agent 自带生图服务 | [使用与边界](image-generation.md) |
+| `sound-effects` | 课件音效 | 判题反馈、按钮操作、重点揭示、限时活动、关键操作 | 本地音频与生成脚本 | [音频文件与调用方式](sound-effects.md) |
 
 同一页可组合多种能力。几何主图默认用 SDK，示意数轴、分类树和集合圈可直接用 HTML/CSS/SVG。选型规则见 [SKILL.md](../SKILL.md#约束)。
 
