@@ -5,6 +5,7 @@ metadata:
   version: "1.0.0"
   display_name: "数学动态讲解"
   display_description: "创建与修改教师主导的分步交互数学课件，交付支持本地打开的在线 HTML"
+  icon: "./assets/icon.png"
   display_name_en: "Interactive Math"
   display_description_en: "Create or revise teacher-led, step-by-step K-12 math lessons for online use, with an HTML file that also opens locally."
 ---
