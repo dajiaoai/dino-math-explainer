@@ -2,8 +2,17 @@
 <p align="center"><a href="README.md">简体中文</a> · <strong>English</strong></p>
 
 <h1 align="center">🦖 Interactive Math Explainer</h1>
-<p align="center"><code>dino-math-explainer</code> · v1.0.0</p>
-<p align="center">Turn a math problem or concept into an interactive HTML lesson you can present step by step.</p>
+<p align="center"><code>dino-math-explainer</code> · v1.0.1</p>
+<p align="center"><strong>Start with one math problem. Bring an interactive lesson to class.</strong></p>
+
+## Why use this skill?
+
+Share a problem or concept and the skill drafts the teaching plan, builds the lesson, and checks it before delivery. You approve the plan, preview the full lesson, and decide when to move on based on how students respond.
+
+- **Review a lesson plan you can teach from.** See what students should notice first, when to ask a question or pause, and when to reveal the answer. Each step uses a diagram, a derivation, or a hands-on activity suited to the teaching goal.
+- **Project the lesson and teach it step by step.** Animations show how figures change, short sound cues mark key reveals, and draggable objects or sliders let students test their predictions. Click to advance or revisit a previous step. Open the interactive HTML in a browser with an internet connection. Text, formulas, diagrams, and labels scale together for projection.
+- **Follow the math all the way through.** The skill checks the problem conditions, geometric constructions, algebraic steps, and conclusions. Construction lines, labels, and formulas appear at the steps where students need them. Forward and back navigation and scaling are checked in a browser before delivery.
+
 
 ## Quick install
 

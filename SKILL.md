@@ -2,7 +2,7 @@
 name: dino-math-explainer
 description: 数学动态讲解——创建或修改教师主导、分步讲解的 K-12 数学交互课件，交付支持本地打开的在线 HTML。适用于数学动态讲解、数学微课及课件中的几何动画。
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   display_name: "数学动态讲解"
   display_description: "创建与修改教师主导的分步交互数学课件，交付支持本地打开的在线 HTML"
   icon: "./assets/icon.png"

@@ -2,8 +2,17 @@
 <p align="center"><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
 
 <h1 align="center">🦖 数学动态讲解</h1>
-<p align="center"><code>dino-math-explainer</code> · v1.0.0</p>
-<p align="center">把一道数学题或知识点变成可分步演示的交互 HTML 课件。</p>
+<p align="center"><code>dino-math-explainer</code> · v1.0.1</p>
+<p align="center"><strong>给一道题，就能开始备一堂动态数学课。</strong></p>
+
+## 为什么使用这个 Skill
+
+把题目或知识点交给 Skill，它会拟好讲解方案、制作课件并走查成品。你确认怎么讲、预览整套课件，上课时按学生的反应决定何时推进。
+
+- **备课有一套可以直接审阅的方案。** 从教学目标出发，排好先看什么、何时提问、哪里停顿、哪一步揭晓答案，再为每一步选好用图、用公式还是让学生动手。
+- **拿到的课件可以直接投影讲。** 动画演示图形的变化，短音效提示关键一步，拖拽和滑块让学生亲手验证猜想。你可以点一下讲一步，也可以回到前一步。交付为交互 HTML，联网即可用浏览器打开，投影时题干、公式、图形和标注一起等比缩放。
+- **每一步推理都准确。** 逐项核对题设、几何构造、代数变形和结论，让辅助线、标注和公式在对应的推理步骤出现。交付前还会在浏览器里实测前进、回退和缩放。
+
 
 [![数学动态讲解 Skill，属于大角几何旗下。微信扫码加入开发者交流群。](assets/developer-community.png)](assets/developer-community.png)
 
