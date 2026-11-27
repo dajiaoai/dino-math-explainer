@@ -3,8 +3,8 @@ name: dino-math-explainer
 display_name: "数学动态讲解"
 display_name_en: "Interactive Math"
 description: 数学动态讲解——创建或修改教师主导、分步讲解的 K-12 数学交互课件，交付支持本地打开的在线 HTML。适用于数学动态讲解、数学微课及课件中的几何动画。
-description_zh: "创建与修改教师主导的分步交互数学课件，交付支持本地打开的在线 HTML"
-description_en: "Create or revise teacher-led, step-by-step K-12 math lessons for online use, with an HTML file that also opens locally."
+description_zh: "数学动态讲解——创建与修改教师主导的分步交互数学课件，交付支持本地打开的在线 HTML"
+description_en: "Interactive Math——Create or revise teacher-led, step-by-step K-12 math lessons for online use, with an HTML file that also opens locally."
 examples_zh:
 - "讲解一元一次方程"
 - "怎么理解线段、直线、射线"
@@ -13,17 +13,17 @@ examples_en:
 - "Explain linear equations in one variable"
 - "How can I understand line segments, lines, and rays?"
 - "Classroom practice on inverse variation"
-version: "2.0.0"
+version: "2.0.1"
 author: "杭州逸登科技有限公司"
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   author: "杭州逸登科技有限公司"
   privacyPolicyUrl: "https://meidengtech.feishu.cn/wiki/W4U2wAdtNiwJC0kANzQcVe6ZnWf?from=from_copylink"
   display_name: "数学动态讲解"
-  display_description: "创建与修改教师主导的分步交互数学课件，交付支持本地打开的在线 HTML"
+  display_description: "数学动态讲解——创建与修改教师主导的分步交互数学课件，交付支持本地打开的在线 HTML"
   icon: "./assets/icon.png"
   display_name_en: "Interactive Math"
-  display_description_en: "Create or revise teacher-led, step-by-step K-12 math lessons for online use, with an HTML file that also opens locally."
+  display_description_en: "Interactive Math——Create or revise teacher-led, step-by-step K-12 math lessons for online use, with an HTML file that also opens locally."
 ---
 
 # 数学动态讲解
