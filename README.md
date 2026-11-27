@@ -2,7 +2,7 @@
 <p align="center"><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
 
 <h1 align="center">🦖 数学动态讲解</h1>
-<p align="center"><code>dino-math-explainer</code> · v1.0.4</p>
+<p align="center"><code>dino-math-explainer</code> · v2.0.0</p>
 <p align="center"><strong>给一道题，就能开始备一堂动态数学课。</strong></p>
 
 ## 为什么使用这个 Skill

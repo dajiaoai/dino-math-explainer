@@ -12,28 +12,28 @@
 
 本地 HTML 使用 `file://` 直接打开，此场景不传入鉴权参数，不需要本地 HTTP 服务。远程 SDK 资源需要联网；使用的版本与实际加载结果应在验证时记录。
 
-## 创作与演示
+## 课件启动与快照内嵌
 
-使用隐藏编辑实例构造、回读与导出，使用可见演示实例展示；完整初始化和错误处理示例以[几何演示能力说明](algeo-sdk.md)为准。两者不要求对应到固定的外层 slide 数据模型。
+将创作环境用 `editor.document.getContent()` 导出的完整工程对象序列化为 JSON，写入 HTML 中的 `application/json` 数据块。序列化时用 `JSON.stringify(snapshot).replace(/</g, '\\u003c')` 转义 `<`，让标签或富文本中的 `</script>` 也能原样保存。快照随 HTML 一起交付，双击打开时可直接从 DOM 读取。
 
-```js
-const editor = await AlgeoSdk.createEditor(editorContainer, {});
-await editor.repl('def A := Point(0, 0)');
-await editor.repl('def B := Point(4, 0)');
-await editor.repl('def edge := Segment(A, B)');
-await editor.repl('list');
-const snapshot = await editor.document.getContent();
+以下是 `file://` 入口的启动片段。生成 HTML 时，把 `__ALGEO_SNAPSHOT__` 替换为完整的转义后 JSON。在线入口的 `createPresentation` 选项使用部署配置中的 `auth: { appId }`。
 
-const presentation = await AlgeoSdk.createPresentation(presentationContainer, {});
-await presentation.loadFile(snapshot);
+```html
+<div id="geometry-presentation" style="width:100%;height:100%"></div>
+<script id="geometry-snapshot" type="application/json">__ALGEO_SNAPSHOT__</script>
+<script type="module">
+  const snapshot = JSON.parse(document.getElementById('geometry-snapshot').textContent);
+  const presentation = await AlgeoSdk.createPresentation(
+    document.getElementById('geometry-presentation'),
+    { ui: { slidePanel: false, pencilToolbar: false, logo: false, zoomControl: false } }
+  );
+  await presentation.loadFile(snapshot);
+</script>
 ```
 
-变量中的容器由 agent 在页面中创建。以上是能力调用片段，不是必须复用的页面模板。
+先加载上文的 SDK 脚本，再执行启动代码。成品每次打开只用工程快照初始化演示实例。编辑端的恢复和 REPL 调试见[几何演示生成流程](algeo-sdk.md#生成与交付流程)。
 
-- 编辑端通过 `document.getContent()` 导出原生工程，通过 `document.loadContent(snapshot)` 恢复；演示端通过 `loadFile(snapshot)` 加载。
-- `repl(command)` 单次执行一条命令。关键构造后回读类型、值和依赖，避免语法合法但几何对象错误。
-- 需要选择工具工程中的画板时使用 `switchSlide(index)`，序号从 0 开始；画板与外层教学步骤的关系由 agent 决定。
-- 原生工程快照属于 SDK 的存储协议，不是本 skill 的统一课件格式。由 SDK 导出，避免凭空拼造协议字段。
+项目含多个画板时，在 `loadFile()` 完成后用 `presentation.switchSlide(index)` 定位画板，索引从 0 开始。外层课件可按教学需要安排画板与讲解步骤的关系。
 
 ## 课件画布缩放
 
@@ -43,6 +43,7 @@ await presentation.loadFile(snapshot);
 ## 嵌入异常与验证
 
 - 保持演示容器和 SDK iframe 可见，让 SDK 自己展示错误原因、解决步骤和操作入口。外层 HTML 的 `catch`、`onerror` 或超时处理可记录诊断。保留原生提示的显示区域与交互，避免用遮罩、通用报错、备用画布或清空 iframe 覆盖它。
+- 关闭创作页后，通过 `file://` 重新打开最终 HTML。确认演示端仅从内嵌快照启动，并走查初始画面、对象关系、标注、拖拽或滑块联动、Reveal 前进和回退。若同时交付在线版，也走查在线入口。
 
 ## 演示编排
 

@@ -4,17 +4,15 @@
 
 用于几何主图、精确构造、函数图像和参数探索。固定主图也用原生对象构造，在同一画板内通过 [Reveal](algeo-presentation.md) 分步绘制、高亮和揭示标注。页面由 agent 自主设计，几何能力统一通过 `algeo-sdk` 接入。
 
-使用一对实例完成创作和展示：
+## 生成与交付流程
 
-- **编辑实例**隐藏在界面之外，agent 调用其 `repl(command)` 定义对象、回读结果和处理报错。
-- **演示实例**显示在讲解界面，供用户观察、拖动和操作。
-- 一组构造完成并回读确认后，调用编辑实例的 `document.getContent()`，将完整快照加载到演示实例。不要靠在两个实例分别执行命令维持一致。
+1. **生成和调试。** 在创作环境创建编辑实例，通过 `editor.repl(command)` 构造几何、核对数学关系并修正错误。用编辑画板检查效果，也可将阶段快照加载到演示实例检查布局和 Reveal。
+2. **导出定稿。** 确认构造和演示效果后，将拖拽点、滑块和视角调整到课堂起始状态，再调用 `editor.document.getContent()`，取得完整的 `FileContentLatest` 工程快照。每次修改几何工程后重新导出。
+3. **发布与启动。** 将完整快照内嵌到交付 HTML。每次打开课件，只创建演示实例并调用 `presentation.loadFile(snapshot)`。把编辑实例、REPL 命令、`loadSource()` 和创作辅助代码留在生成环境。需要继续编辑时，在创作环境用 `editor.document.loadContent(snapshot)` 恢复工程。见[课件启动与快照内嵌](algeo-sdk-integration.md#课件启动与快照内嵌)。
 
 **本地 HTML 必须通过 `file://` 直接打开。此场景创建编辑和演示实例都无需传入鉴权参数，不传 `auth` 或 appId，也不要求启动本地 HTTP 服务。** 远程 SDK 资源仍需联网。
 
-演示端保留大角 SDK 原生错误提示和解决引导。下文 `runRepl` 的 `catch` 只用于创作端回读命令错误。演示端按[嵌入异常与验证](algeo-sdk-integration.md#嵌入异常与验证)处理。
-
-## 基本接入：隐藏编辑端，可见演示端
+## 在创作环境调试画板
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@dajiaoai/algeo-sdk@latest/dist/algeo-sdk.umd.js"></script>
@@ -22,8 +20,6 @@
 <!-- 保持非零尺寸，移到屏外；隐藏节点不接收指针或键盘焦点。 -->
 <div id="geometry-editor" inert aria-hidden="true"
      style="position:fixed;left:-20000px;top:0;width:800px;height:600px;visibility:hidden;pointer-events:none"></div>
-<!-- 此节点放在课件画布内，由画布版式分配设计宽高。 -->
-<div id="geometry-presentation" style="width:100%;height:100%"></div>
 ```
 
 不要用 `display:none` 或零尺寸容器初始化编辑实例，以免内嵌画板无法正确测量。挂载尺寸和演示区域布局由 agent 按页面需要调整。
@@ -35,10 +31,6 @@ const editor = await AlgeoSdk.createEditor(
   document.getElementById('geometry-editor'),
   { ...authOptions, ui: { navbar: false, slidePanel: false, toolboxPanel: false,
           algebraPanel: false, docPanel: false } }
-);
-const presentation = await AlgeoSdk.createPresentation(
-  document.getElementById('geometry-presentation'),
-  { ...authOptions, ui: { slidePanel: false, pencilToolbar: false, logo:false, zoomControl:false } }
 );
 
 async function runRepl(command) {
@@ -54,27 +46,14 @@ async function runRepl(command) {
   }
 }
 
-async function syncPresentation() {
-  const snapshot = await editor.document.getContent();
-  await presentation.loadFile(snapshot);
-  return snapshot;
-}
-
-// agent 可通过当前页面的执行环境逐次调用，并读取结构化返回值。
-window.geometry = { repl: runRepl, sync: syncPresentation };
+// 供 agent 在创作环境逐条调试，并在定稿后显式读取快照。
+window.geometry = {
+  repl: runRepl,
+  exportSnapshot: async () => editor.document.getContent()
+};
 ```
 
-**同步接口名称：**这里“把内容同步到演示模式”的原生方法是 `presentation.loadFile(snapshot)`，不是 `presentation.loadContent()`。`document.loadContent(snapshot)` 用于恢复编辑实例。依据当前[编辑 API](https://open.dajiaoai.com/sdk/2/editor)与[演示 API](https://open.dajiaoai.com/sdk/2/presentation)，同步链路为：
-
-```text
-隐藏编辑实例 editor.repl(command)
-  → 获取成功输出或错误
-  → 回读核对构造
-  → editor.document.getContent()
-  → 可见演示实例 presentation.loadFile(snapshot)
-```
-
-## 逐条定义、回读并同步
+## 逐条定义、回读并导出
 
 ```js
 for (const command of [
@@ -82,9 +61,11 @@ for (const command of [
   'def B := Point(4, 0)',
   'def edge := Segment(A, B)',
   'label A := "A"',
-  'style #edge { color: #2563EB; lineWidth: 3; }'
+  'style #edge { color: #2563EB; lineWidth: 3; }',
+  'list',
+  'eval B.x - A.x'
 ]) {
-  const result = await geometry.repl(command);
+  const result = await window.geometry.repl(command);
   console.log(result); // agent 必须读取 output 或 code/message
   if (!result.success) {
     throw new Error(`REPL 失败：${result.command}\n${result.message}`);
@@ -95,6 +76,8 @@ for (const command of [
 每次调用只传一条命令，顺序 await。成功输出的具体文本由 SDK 决定，不要假设定义命令一定返回特定格式；语法不确定时，观察语法错误返回，不确定可执行 `help syntax`。
 
 REPL 失败可能留下部分修改；命令执行成功也不代表类型或数学关系正确。比如需要线段时，应核对定义使用的是 `Segment` 而非 `Line`。
+
+完成回读和画面验证后，执行 `await window.geometry.exportSnapshot()`。显式读取编辑器的最新工程，REPL 修改不会触发宿主的 `contentChange` 事件。工程内含对象定义、变量值、样式等，应保留 SDK 导出的完整对象。
 
 ## 基本语法
 

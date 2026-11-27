@@ -13,10 +13,10 @@ examples_en:
 - "Explain linear equations in one variable"
 - "How can I understand line segments, lines, and rays?"
 - "Classroom practice on inverse variation"
-version: "1.0.4"
+version: "2.0.0"
 author: "杭州逸登科技有限公司"
 metadata:
-  version: "1.0.4"
+  version: "2.0.0"
   author: "杭州逸登科技有限公司"
   privacyPolicyUrl: "https://meidengtech.feishu.cn/wiki/W4U2wAdtNiwJC0kANzQcVe6ZnWf?from=from_copylink"
   display_name: "数学动态讲解"
